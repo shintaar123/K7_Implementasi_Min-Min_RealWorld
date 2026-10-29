@@ -1,0 +1,22 @@
+{
+  "hosts": 2,
+  "vms_per_host": 3,
+  "vm_types": [
+    {
+      "name": "Small",
+      "mips": 1000
+    },
+    {
+      "name": "Medium",
+      "mips": 2000
+    },
+    {
+      "name": "Large",
+      "mips": 3000
+    }
+  ],
+  "time_scale": 0.05,
+  "ops_per_mi": 250,
+  "mips_per_core": 4000,
+  "mode": "cpu"
+}

@@ -1,0 +1,209 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vm-0
+  labels: {soka-vm: "0"}
+spec:
+  nodeSelector: {soka-host: host-1}
+  containers:
+  - name: worker
+    image: python:3.11-slim
+    imagePullPolicy: IfNotPresent
+    command: ["python", "/app/worker.py"]
+    ports: [{containerPort: 8080}]
+    env:
+    - {name: VM_ID, value: "0"}
+    - {name: VM_MIPS, value: "1000"}
+    - {name: CPU_LIMIT, value: "0.25"}
+    - {name: TIME_SCALE, value: "0.05"}
+    - {name: OPS_PER_MI, value: "250"}
+    - {name: MODE, value: "cpu"}
+    - {name: MIPS_PER_CORE, value: "4000"}
+    - {name: NODE_NAME, valueFrom: {fieldRef: {fieldPath: spec.nodeName}}}
+    resources:
+      requests: {cpu: "250m", memory: 256Mi}
+      limits:   {cpu: "250m", memory: 256Mi}
+    volumeMounts: [{name: code, mountPath: /app}]
+  volumes: [{name: code, configMap: {name: soka-code}}]
+---
+apiVersion: v1
+kind: Service
+metadata: {name: vm-0}
+spec:
+  selector: {soka-vm: "0"}
+  ports: [{port: 8080, targetPort: 8080}]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vm-1
+  labels: {soka-vm: "1"}
+spec:
+  nodeSelector: {soka-host: host-1}
+  containers:
+  - name: worker
+    image: python:3.11-slim
+    imagePullPolicy: IfNotPresent
+    command: ["python", "/app/worker.py"]
+    ports: [{containerPort: 8080}]
+    env:
+    - {name: VM_ID, value: "1"}
+    - {name: VM_MIPS, value: "2000"}
+    - {name: CPU_LIMIT, value: "0.5"}
+    - {name: TIME_SCALE, value: "0.05"}
+    - {name: OPS_PER_MI, value: "250"}
+    - {name: MODE, value: "cpu"}
+    - {name: MIPS_PER_CORE, value: "4000"}
+    - {name: NODE_NAME, valueFrom: {fieldRef: {fieldPath: spec.nodeName}}}
+    resources:
+      requests: {cpu: "500m", memory: 256Mi}
+      limits:   {cpu: "500m", memory: 256Mi}
+    volumeMounts: [{name: code, mountPath: /app}]
+  volumes: [{name: code, configMap: {name: soka-code}}]
+---
+apiVersion: v1
+kind: Service
+metadata: {name: vm-1}
+spec:
+  selector: {soka-vm: "1"}
+  ports: [{port: 8080, targetPort: 8080}]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vm-2
+  labels: {soka-vm: "2"}
+spec:
+  nodeSelector: {soka-host: host-1}
+  containers:
+  - name: worker
+    image: python:3.11-slim
+    imagePullPolicy: IfNotPresent
+    command: ["python", "/app/worker.py"]
+    ports: [{containerPort: 8080}]
+    env:
+    - {name: VM_ID, value: "2"}
+    - {name: VM_MIPS, value: "3000"}
+    - {name: CPU_LIMIT, value: "0.75"}
+    - {name: TIME_SCALE, value: "0.05"}
+    - {name: OPS_PER_MI, value: "250"}
+    - {name: MODE, value: "cpu"}
+    - {name: MIPS_PER_CORE, value: "4000"}
+    - {name: NODE_NAME, valueFrom: {fieldRef: {fieldPath: spec.nodeName}}}
+    resources:
+      requests: {cpu: "750m", memory: 256Mi}
+      limits:   {cpu: "750m", memory: 256Mi}
+    volumeMounts: [{name: code, mountPath: /app}]
+  volumes: [{name: code, configMap: {name: soka-code}}]
+---
+apiVersion: v1
+kind: Service
+metadata: {name: vm-2}
+spec:
+  selector: {soka-vm: "2"}
+  ports: [{port: 8080, targetPort: 8080}]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vm-3
+  labels: {soka-vm: "3"}
+spec:
+  nodeSelector: {soka-host: host-2}
+  containers:
+  - name: worker
+    image: python:3.11-slim
+    imagePullPolicy: IfNotPresent
+    command: ["python", "/app/worker.py"]
+    ports: [{containerPort: 8080}]
+    env:
+    - {name: VM_ID, value: "3"}
+    - {name: VM_MIPS, value: "1000"}
+    - {name: CPU_LIMIT, value: "0.25"}
+    - {name: TIME_SCALE, value: "0.05"}
+    - {name: OPS_PER_MI, value: "250"}
+    - {name: MODE, value: "cpu"}
+    - {name: MIPS_PER_CORE, value: "4000"}
+    - {name: NODE_NAME, valueFrom: {fieldRef: {fieldPath: spec.nodeName}}}
+    resources:
+      requests: {cpu: "250m", memory: 256Mi}
+      limits:   {cpu: "250m", memory: 256Mi}
+    volumeMounts: [{name: code, mountPath: /app}]
+  volumes: [{name: code, configMap: {name: soka-code}}]
+---
+apiVersion: v1
+kind: Service
+metadata: {name: vm-3}
+spec:
+  selector: {soka-vm: "3"}
+  ports: [{port: 8080, targetPort: 8080}]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vm-4
+  labels: {soka-vm: "4"}
+spec:
+  nodeSelector: {soka-host: host-2}
+  containers:
+  - name: worker
+    image: python:3.11-slim
+    imagePullPolicy: IfNotPresent
+    command: ["python", "/app/worker.py"]
+    ports: [{containerPort: 8080}]
+    env:
+    - {name: VM_ID, value: "4"}
+    - {name: VM_MIPS, value: "2000"}
+    - {name: CPU_LIMIT, value: "0.5"}
+    - {name: TIME_SCALE, value: "0.05"}
+    - {name: OPS_PER_MI, value: "250"}
+    - {name: MODE, value: "cpu"}
+    - {name: MIPS_PER_CORE, value: "4000"}
+    - {name: NODE_NAME, valueFrom: {fieldRef: {fieldPath: spec.nodeName}}}
+    resources:
+      requests: {cpu: "500m", memory: 256Mi}
+      limits:   {cpu: "500m", memory: 256Mi}
+    volumeMounts: [{name: code, mountPath: /app}]
+  volumes: [{name: code, configMap: {name: soka-code}}]
+---
+apiVersion: v1
+kind: Service
+metadata: {name: vm-4}
+spec:
+  selector: {soka-vm: "4"}
+  ports: [{port: 8080, targetPort: 8080}]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vm-5
+  labels: {soka-vm: "5"}
+spec:
+  nodeSelector: {soka-host: host-2}
+  containers:
+  - name: worker
+    image: python:3.11-slim
+    imagePullPolicy: IfNotPresent
+    command: ["python", "/app/worker.py"]
+    ports: [{containerPort: 8080}]
+    env:
+    - {name: VM_ID, value: "5"}
+    - {name: VM_MIPS, value: "3000"}
+    - {name: CPU_LIMIT, value: "0.75"}
+    - {name: TIME_SCALE, value: "0.05"}
+    - {name: OPS_PER_MI, value: "250"}
+    - {name: MODE, value: "cpu"}
+    - {name: MIPS_PER_CORE, value: "4000"}
+    - {name: NODE_NAME, valueFrom: {fieldRef: {fieldPath: spec.nodeName}}}
+    resources:
+      requests: {cpu: "750m", memory: 256Mi}
+      limits:   {cpu: "750m", memory: 256Mi}
+    volumeMounts: [{name: code, mountPath: /app}]
+  volumes: [{name: code, configMap: {name: soka-code}}]
+---
+apiVersion: v1
+kind: Service
+metadata: {name: vm-5}
+spec:
+  selector: {soka-vm: "5"}
+  ports: [{port: 8080, targetPort: 8080}]

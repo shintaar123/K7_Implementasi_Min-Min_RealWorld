@@ -1,0 +1,9 @@
+metrik,nilai
+algo,minmin
+n_task,300
+makespan_nyata_detik,192.3027
+makespan_setara_simulasi_detik,3846.0532
+makespan_prediksi_simulasi_detik,3537.5
+resource_utilization_persen,96.7617
+average_waiting_time_detik,47.8565
+throughput_task_per_detik,1.5600
