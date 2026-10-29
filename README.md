@@ -1,6 +1,14 @@
 # Penjadwalan Min-Min pada Kubernetes: Perbandingan Simulasi dan Implementasi Nyata
 
-Kelompok / anggota: *(isi)*
+## Anggota
+
+| NRP | Nama |
+|---|---|
+| 5027241021 | Mochkamad Maulana Syafaat |
+| 5027241052 | Salsa Bil Ulla |
+| 5027241049 | Khumaidi Kharis Az-zacky |
+| 5027241016 | Shinta Alya Ramadani |
+| 5027241041 | Raya Ahmad Syarif |
 
 ## 1. Ringkasan
 
