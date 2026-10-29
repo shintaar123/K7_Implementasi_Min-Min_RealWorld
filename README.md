@@ -96,7 +96,7 @@ Grafik detail per dataset (beban VM, urutan vs panjang task, waiting time, Gantt
 | `data/` | Dataset GoCJ dan Synthetic |
 | `k8s/` | Manifest Kubernetes |
 | `real/` | Kode percobaan nyata (setup, controller, worker, batch, grafik, validasi) |
-| `results/`, `results_sim/` | Hasil simulasi CloudSim |
+| `results_sim/` | Hasil CloudSim untuk 5 dataset (GoCJ-100, 300, 500, 1.000, Synthetic-1.000) |
 | `results_real/` | Hasil nyata per run, grafik, dan ringkasan |
 
 ## 7. Cara Menjalankan
